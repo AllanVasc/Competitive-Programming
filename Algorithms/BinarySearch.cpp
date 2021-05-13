@@ -71,6 +71,7 @@ Time Complexity
 
 Binary Search                   -> O(logn)
 Finding the smallest solution   -> O(x*logz) x is the time complexity of function check();
+Finding the maximum value       -> O(x*logz) x is the time complexity of function f();
 
 Links:
 
