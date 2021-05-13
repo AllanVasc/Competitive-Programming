@@ -35,4 +35,9 @@ s.order_of_key(X);  -> O(logn)
 Observação: Quando o elemento não existe no indexed_set a função "order_of_key()" retorna a posição que ele DEVERIA ESTAR,
 caso existisse, por isso é útil para calcular a quantidade de elementos estritamente menores que "X".
 
+Links:
+
+https://codeforces.com/blog/entry/11080
+https://www.geeksforgeeks.org/policy-based-data-structures-g/
+
 */
