@@ -98,7 +98,7 @@ bool isBipartite(){
                     if (color[j] == -1) {
                         //colouring with opposite color to that of parent
                         color[j] = 1-c;
-                        q.push({ j, col[j] });
+                        q.push({ j, color[j] });
                     }
                 }
             }
