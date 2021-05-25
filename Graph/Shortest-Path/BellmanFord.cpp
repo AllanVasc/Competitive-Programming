@@ -29,9 +29,8 @@ bool bellmanFord(int src){
     // negative cycles, we can use a flag to stop when there isn't update
     for(int i = 0; i < N-1; i++){
         for(int j = 0; j < edgeList.size(); j++){
-            int u = get<0>(edgeList[j]);
-            int v = get<1>(edgeList[j]);
-            ll w = get<2>(edgeList[j]);
+            int u,v,w;
+            tie(u,v,w) = edgeList[j];
             if(dist[u] < LONG_LONG_MAX)
                 dist[v] = min(dist[v], dist[u] + w);
         }
@@ -42,9 +41,8 @@ bool bellmanFord(int src){
     // guarantees shortest distances if graph doesn't contain
     // negative weight cycle. If we have a update, there's a negative cycle.
     for(int j = 0; j < edgeList.size(); j++){
-        int u = get<0>(edgeList[j]);
-        int v = get<1>(edgeList[j]);
-        ll w = get<2>(edgeList[j]);
+        int u,v,w;
+        tie(u,v,w) = edgeList[j];
         if(dist[u] < LONG_LONG_MAX && dist[u] + w < dist[v])
             return false;
     }

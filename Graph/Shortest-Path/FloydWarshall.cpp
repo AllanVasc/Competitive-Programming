@@ -7,10 +7,26 @@ const int N = 10; // Number of vertices
 // Graph inplementation using Adjacency matrix (0-Based)
 ll graph[N][N];
 
+// Matrix used to keep the shortest distances (0-Based)
+ll dist[N][N];
+
 // Undirected Weighted Graph
 void addEdge(int u, int v,ll w){
     graph[u][v] = w;
     graph[v][u] = w;
+}
+
+// Function used to initialize the distance matrix
+void build(){
+
+    for(int i = 0; i < N; i++){
+        for(int j = 0; j < N; j++){
+            if(i == j) dist[i][j] = 0;
+            else if(graph[i][j]) dist[i][j] = graph[i][j];
+            else dist[i][j] = LONG_LONG_MAX;
+        }
+    }
+
 }
 
 // Floyd-Warshall Algorithm
@@ -35,7 +51,8 @@ void floydWarshall(){
 
 Time Complexity
 
-floydWarshall -> O(N^3)
+build           -> O(N^2)
+floydWarshall   -> O(N^3)
 
 Links:
 
@@ -44,11 +61,9 @@ https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
 
 Obs.: 
 
-1º) Setar d[i][i] = 0 (Não possui peso do vértice para ele mesmo)
-2º) Setar d[i][j] = INF caso não exista a aresta (i -> j)
-3º) Erros de precisão são acumulados muito rápido utilizando pontos flutuantes, precisamos corrigir
+1º) Erros de precisão são acumulados muito rápido utilizando pontos flutuantes, precisamos corrigir
 utilizando EPS (Ver o primeiro site)
-4º) Podemos guardar os predecessores utilizando uma matriz.
-5º) O grafo pode ter pesos negativos, mas não ciclos negativos
+2º) Podemos guardar os predecessores utilizando uma matriz.
+3º) O grafo pode ter pesos negativos, mas não ciclos negativos
 
 */
