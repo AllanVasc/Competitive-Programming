@@ -64,7 +64,6 @@ void update(int p,int l, int r, int idx, ll value){
         // Update Node
         segTree[p] = segTree[lc] + segTree[rc];
 
-
     }
 }
 
@@ -99,6 +98,31 @@ ll query(int p, int l, int r, int ql, int qr){
     }
 }
 
+// Range update [L,R]. It only works if the result converges. If there is a common value for the whole range [L,R] use Lazy Propagation.
+void updateRange(int p, int l, int r, int ql, int qr){
+
+    if(l == r){
+        segTree[p] = value; // This value will vary according to each position of the "v" array
+    }
+    else{
+        int m = (l+r)/2;
+        int lc = 2*p;
+        int rc = lc + 1;
+
+        if(qr <= m){
+            updateRange(lc, l, m, ql, qr);
+        }
+        else if(ql > m){
+            updateRange(rc, m+1, r, ql, qr);
+        }
+        else{
+            updateRange(lc,l,m,ql,qr);
+            updateRange(rc,m+1,r,ql,qr);
+        }
+        segTree[p] = segTree[lc] + segTree[rc];
+    }
+}
+
 /*
 
 Time Complexity
@@ -106,6 +130,7 @@ Time Complexity
 build       -> O(n)
 update      -> O(logn)
 query       -> O(logn)
+updateRange -> O(n)
 
 Links:
 
