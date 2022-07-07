@@ -16,8 +16,8 @@ class segTree{
 public:
     // n = number of elements or v.size() - 1
     segTree(int n){
-        seg.resize(4*n);
-        lazy.resize(4*n);
+        seg.assign(4*n, 0);
+        lazy.assign(4*n, 0);
         build(1,1,n);
     }
     // Call using update(1,1,n,ql,qr,value) (ql and qr need to be 1-Based)
