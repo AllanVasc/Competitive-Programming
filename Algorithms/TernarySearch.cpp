@@ -4,8 +4,8 @@ using namespace std;
 // Algorithm for finding the maximum of f(x)  which is unimodal on an interval [l,r]
 // Real numbers
 double ternarySearch(double l, double r) {
-
-	double eps = 1e-9;              // Set the error limit
+    
+    double eps = 1e-9;              // Set the error limit
     for(int i = 0; i < 200 && r-l > eps; i++){
         double m1 = (2*l + r)/3.0;
         double m2 = (l + 2*r)/3.0;
