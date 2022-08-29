@@ -3,22 +3,23 @@ using namespace std;
 
 typedef long long ll;
 
-const int MAX_N = 10000;    // Number of vertices
-const int LOG = 20;         // Log2(N)
+const int MAXN = 10000;  	// Number of vertices
+const int LOG = 20;     	// Log2(N)
 
-vector<int> children[MAX_N];    // Graph inplementation using Adjacency List (0-Based)
-int up[MAX_N][LOG];             // up[v][j] is 2^j-th ancestor of v
-int depth[MAX_N];
+vector<vector<int>> children;	// Graph inplementation using Adjacency List (0-Based)
+int up[MAXN][LOG];            	// up[v][j] is 2^j-th ancestor of v
+int depth[MAXN];
 
 // Preprocessing
-void dfs(int a) {
+void dfs(int a, int p) {
 	for(int b : children[a]) {
+		if(b == p) continue;    // don't go back to the father
 		depth[b] = depth[a] + 1;
-		up[b][0] = a; // a is parent of b
+		up[b][0] = a; 			// a is parent of b
 		for(int j = 1; j < LOG; j++) {
 			up[b][j] = up[ up[b][j-1] ][j-1];
 		}
-		dfs(b);
+		dfs(b, a);
 	}
 }
 
@@ -34,7 +35,7 @@ int lca(int a, int b) {
 			a = up[a][j]; // parent of a
 		}
 	}
-	// 2) if b was ancestor of a then now a==b
+	// 2) if b was ancestor of a then now a == b
 	if(a == b) {
 		return a;
 	}
