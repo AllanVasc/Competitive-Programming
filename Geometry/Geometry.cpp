@@ -28,6 +28,7 @@ struct PT{
 // Debug function
 ostream &operator << (ostream &os, const PT &p){
     os << "(" << p.x << "," << p.y << ")";
+    return os;
 }
 
 // Function to calculate the dot product (u.v)

@@ -13,7 +13,7 @@ vector<PT> convexHull(vector<PT> p, bool needSort = 1){
 
     // Lower hull
     for(int i = 0; i < n; i++){
-        while(k >= 2 && cross(answ[k-1] - answ[k-2], p[i] - answ[k-2]) <= 0) k--; // If collinear points are allowed put only "<"
+        while(k >= 2 && cross(answ[k - 1] - answ[k - 2], p[i] - answ[k - 2]) <= 0) k--; // If collinear points are allowed put only "<"
         answ[k++] = p[i];
     }
 
