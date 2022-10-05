@@ -1,0 +1,67 @@
+# Any line followed by a '#' character is ignored
+# Section headings must be in square brackets
+# Subsections within a section should follow the format:
+#   [filename within code directory][tab character \t][subsection title]
+# tab character:	
+
+[Data Structures]
+Data-Structures/DisjointSetUnion.cpp	DSU (Disjoint Set Union)
+Data-Structures/FennwickTree.cpp	BIT (Fennwick Tree)
+Data-Structures/FennwickTree2D.cpp	BIT 2D (Fennwick Tree)
+Data-Structures/SegmentTree.cpp	Segment Tree
+Data-Structures/LazySegTree.cpp	SegTree with Lazy Propagation
+Data-Structures/PolicyBased.cpp	Policy Based Struct
+Data-Structures/MultiIndexedSet.cpp	Multi Indexed Set
+
+[Graph Algorithms]
+Graph/Traversal/DFS.cpp	DFS
+Graph/Traversal/BFS.cpp	BFS
+Graph/TopologicalSort.cpp	Topologial Sort
+Graph/Shortest-Path/Dijkstra.cpp	Dijkstra
+Graph/Shortest-Path/FloydWarshall.cpp	Floyd-Warshall
+Graph/Shortest-Path/BellmanFord.cpp	Bellman-Ford
+Graph/Shortest-Path/SPFA.cpp	SPFA
+Graph/MST/Kruskal.cpp	Kruskal
+Graph/MST/Prim.cpp	Prim
+Graph/Flow/MaxFlowDinic.cpp	Dinic - Max Flow
+Graph/Flow/MinCostFlow.cpp	Min Cost Max Flow
+Graph/Flow/StoerWagnerMinCut.cpp	Stoer Wagner Min Cut
+Graph/LCABinaryLifting.cpp	LCA (Binary Lifting)
+Graph/LCA.cpp	LCA (Segment Tree)
+Graph/Kosaraju.cpp	Kosaraju (Strongly Connected Components)
+Graph/2SAT.cpp	2 SAT
+
+[Dynamic Programming]
+DP/LCS.cpp	LCS
+DP/LIS.cpp	LIS
+
+[Number Theory]
+Number-Theory/FastExp.cpp	Fast Exponentiation
+Number-Theory/ModMultInverse.cpp	Multiplicative Inverse
+Number-Theory/ShortMiller&Rho.cpp	Miller Rabin - Pollard Rho
+Number-Theory/Miller&Rho.cpp	Miller - Rho Iterative
+Number-Theory/FFT.cpp	Fast Fourier transform
+Number-Theory/BestMiller&Rho.cpp	Pollard Rho with Montgomery
+
+[Geometry]
+Geometry/Geometry.cpp	Geometry
+Geometry/ConvexHull.cpp	Convex Hull
+Geometry/PolygonArea.cpp	Polygon Area
+
+[String Algorithms]
+String/RabinKarp.cpp	Rabin Karp Hash
+String/ZFunction.cpp	Z Algorithm
+
+[Search Algorithms]
+Search/BinarySearch.cpp	Binary Search
+Search/TernarySearch.cpp	Ternary Search
+
+[Miscellaneous]
+Miscellaneous/Kadane.cpp	Kadane
+Miscellaneous/NextGreatElement.cpp	Next Great Element
+Miscellaneous/PreviousGreatElement.cpp	Previous Great Element
+Miscellaneous/QuickSelect.cpp	Quick Select
+Miscellaneous/SpiralTraversal.cpp	Spiral Traversal
+
+[Util]
+Util/Matrix.cpp	Structure for matrix
