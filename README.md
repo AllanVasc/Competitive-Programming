@@ -1,4 +1,4 @@
-Código para mim tem que ser por metro - ICPC Library
+My - ICPC Library
 =================
 
 Algorithms and data structures library for competitive programming, mainly ICPC.
