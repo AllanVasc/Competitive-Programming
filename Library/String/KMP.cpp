@@ -26,7 +26,7 @@ public:
                 j = lps[j - 1];
             
             last = (j < m && text[i] == pattern[j]) ? j + 1 : 0;
-            if(last == m) matches.push_back(i);
+            if(last == m) matches.push_back(i - m + 1);
         }
         return matches;
     }
