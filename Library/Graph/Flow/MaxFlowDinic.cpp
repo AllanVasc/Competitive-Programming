@@ -2,18 +2,15 @@
 using namespace std;
 
 #define int long long
-using ll = long long;
-
-const int INF = 1e18;
 
 // Dinic's Algorithm to find the Max Flow of a graph
 class Dinic{
     int N;
     vector<int> level;
     vector<bool> dead;
+    const int INF = 1e18;
 
 public:
-
     struct Edge{
         Edge(int vertice, int capacity){
             v = vertice;
@@ -27,9 +24,9 @@ public:
     vector<vector<int>> g;
 
     Dinic(int size, int u, int v){  // Initializing Dinic
-        g.resize(size);
         N = size;
-        level.resize(size);
+        g.resize(N);
+        level.resize(N);
         source = u;
         sink = v;
     }
@@ -42,7 +39,6 @@ public:
     }
 
     int run(){
-
         int flow = 0;
         while(BFS())
             flow += maxflow(source, INF);
@@ -105,12 +101,9 @@ public:
     }
 
 private:
-    
     bool BFS(){ // Construct the Augmenting Level Path
-
-        for(int i = 0; i < N; i++) level[i] = INF;
-        dead.clear();
-        dead.resize(N, false);
+        level.assign(N, INF);
+        dead.assign(N, false);
         level[source] = 0;
         queue<int> q;
 
@@ -133,16 +126,14 @@ private:
     }
 
     int maxflow(int u, int flow){
-
         if(dead[u] || flow == 0) return 0;
         if(u == sink) return flow;
 
         int answ = 0;
-
         for(auto i: g[u]){
             if(level[edge[i].v] != level[u] + 1) continue;
             int f = maxflow(edge[i].v, min(edge[i].cap, flow));
-            int reversed_i = (i%2 == 0 ? i+1 : i-1);    // Finding the "even" edge of "i"
+            int reversed_i = (i % 2 == 0 ? i + 1 : i - 1);    // Finding the "even" edge of "i"
             flow -= f;
             answ += f;
             edge[i].cap -= f;
