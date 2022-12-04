@@ -1,78 +1,67 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-
-vector<ll> v;
+#define int long long
 
 // Kadane’s Algorithm (Works in array's that have only negative numbers)
-ll kadane(int size){
-
-    ll best = 0;
-    ll currSum = 0;
-
-    for(int i = 0; i < size; i++){
-
-        // We have two option, ours current sum is actually starting at v[i] or is the sum of previous subarray + v[i]
-        currSum = max(v[i],currSum + v[i]);
-
-        // Ours answer is the max between the previously answer or the current sum
-        best = max(best,currSum);
-
+int kadane(int n, vector<int> &v){
+    int answ = 0;   // If possible be an empty subarray
+    int curr = 0;
+    for(int i = 0; i < n; i++){
+        curr = max(v[i], curr + v[i]); // We have two option, ours current sum is actually starting at v[i] or is the sum of previous subarray + v[i]
+        answ = max(answ, curr);
     }
-
-    return best;
-
+    return answ;
 }
 
 // Kadane circular array (Method 1)
-ll maxCircularSumMethod1(int size){
+int maxCircularSumMethod1(int n, vector<int> &v){
 
     // Ours answer don't have the corners (Just need to use Kadane)
-    ll max_kadane = kadane(size);
+    int max_kadane = kadane(n, v);
 
     // if maximum sum using standard kadane' is less than 0
     if(max_kadane < 0)
       return max_kadane;
  
     // Ours answer can have the corners
-    ll max_wrap = 0;
+    int max_wrap = 0;
 
-    for(int i = 0; i < size; i++) {
+    for(int i = 0; i < n; i++) {
         max_wrap += v[i];   // Calculate array-sum
         v[i] = -v[i];       // invert the array (change sign)
     }
  
     // Max sum with corner elements will be:
     // array-sum - (-max subarray sum of inverted array)
-    max_wrap = max_wrap + kadane(size);
+    max_wrap = max_wrap + kadane(n, v);
  
     // The maximum circular sum will be maximum of two sums
     return max(max_wrap, max_kadane);
 }
 
 // Kadane circular array (Method 2)
-ll maxCircularSumMethod2(int size){
+int maxCircularSumMethod2(int n, vector<int> &v){
 
     // Corner Case
-    if (size == 1)
+    if (n == 1)
         return v[0];
  
     // Initialize sum variable which store total sum of the array.
-    ll totalSum = 0;
-    for (int i = 0; i < size; i++) {
+    int totalSum = 0;
+    for (int i = 0; i < n; i++) {
         totalSum += v[i];
     }
  
     // Initialize every variable with first value of array.
-    ll bestMax = v[0];
-    ll currSumMax = v[0];
+    int bestMax = v[0];
+    int currSumMax = v[0];
 
-    ll bestMin = v[0];
-    ll currSumMin = v[0];
+    int bestMin = v[0];
+    int currSumMin = v[0];
  
     // Concept of Kadane's Algorithm
-    for (int i = 1; i < size; i++) {
+    for (int i = 1; i < n; i++) {
         // Kadane's Algorithm to find Maximum subarray sum.
         currSumMax = max(v[i], currSumMax + v[i]);
         bestMax = max(bestMax, currSumMax);

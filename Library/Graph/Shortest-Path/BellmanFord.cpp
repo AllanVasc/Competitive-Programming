@@ -1,53 +1,45 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-const int N = 10; // Number of vertices
+#define int long long
 
 // Graph inplementation using Edge List (u,v,w) (0-Based)
-vector<tuple<int,int,ll>> edgeList;
-
-// Array used to keep the shortest distances (0-Based)
-ll dist[N];
-
-// Undirected Weighted Graph
-void addEdge(int u, int v,ll w){
-    edgeList.emplace_back(u,v,w);
-    edgeList.emplace_back(v,u,w);
-}
+vector<tuple<int,int,int>> edgeList;
+vector<int> dist;
 
 // Bellman-Ford Algorithm (Single source shortest path with negative weight edges)
-bool bellmanFord(int src){
-
-    // Initialize distances from src to all other vertices as INFINITE
-    for(int i = 0; i < N; i++){
-        dist[i] = LONG_LONG_MAX;
-    }
+// Returns true if valid answer exists.
+bool bellmanFord(int src, int n){
+    const int INF = 0x3f3f3f3f3f3f3f3f;
+    const int NINF = -INF; 
+    dist.assign(n, INF);
     dist[src] = 0;
 
-    // Relax all edges N - 1 times. If we're sure that we don't have
+    // Relax all edges n - 1 times. If we're sure that we don't have
     // negative cycles, we can use a flag to stop when there isn't update
-    for(int i = 0; i < N-1; i++){
+    for(int i = 0; i < n - 1; i++){
         for(int j = 0; j < edgeList.size(); j++){
-            int u,v,w;
+            int u, v, w;
             tie(u,v,w) = edgeList[j];
-            if(dist[u] < LONG_LONG_MAX)
-                dist[v] = min(dist[v], dist[u] + w);
+            if(dist[u] == INF) continue;
+            dist[v] = min(dist[v], dist[u] + w);
+            dist[v] = max(dist[v], NINF);
         }
-
     }
 
-    // Check for negative-weight cycles.  The above step
-    // guarantees shortest distances if graph doesn't contain
-    // negative weight cycle. If we have a update, there's a negative cycle.
-    for(int j = 0; j < edgeList.size(); j++){
-        int u,v,w;
-        tie(u,v,w) = edgeList[j];
-        if(dist[u] < LONG_LONG_MAX && dist[u] + w < dist[v])
-            return false;
+    // Check the existence of a negative cycle. If you have only one update we can return true.
+    // We perform n - 1 steps to check if the cycle affects a specific node.
+    for(int i = 0; i < n - 1; i++){
+        for(int j = 0; j < edgeList.size(); j++){
+            int u, v, w;
+            tie(u,v,w) = edgeList[j];
+            if(dist[u] == INF) continue;
+			if(dist[u] + w < dist[v]) dist[v] = NINF; // We can only return false here
+        }
     }
 
     // There isn't negative cycle and our answer is in dist
+    // change to "return dist[node] != NINF" to verify a specific node.
     return true;
 }
 
