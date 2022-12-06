@@ -1,14 +1,64 @@
-PA:
-a_n = a_1 + (n - 1) * r
-S_n = ((a_1 + a_n) * n) / 2
+-> Numero de fatores:
+    Dado um numero n em sua fatoracao prima n = (p_1^alfa_1) * (p_2^alfa_2) * ...
+    O numero de fatores eh dado pelo produtorio i = 1,...,k de (alfa_i + 1)
 
-PG:
-a_n = a_1 * q^(n - 1)
-S_n = (a_1 * (q^n - 1)) / (q - 1)
-S_inf = (a_1) / (1 - q)    // Se -1 < q < 1
+-> Soma dos fatores:
+    Dado um numero n em sua fatoracao prima n = (p_1^alfa_1) * (p_2^alfa_2) * ...
+    A soma dos fatores eh dada pelo produtorio i = 1,...,k de (p_i^(alfa_i + 1) - 1) / (p_i - 1)
 
-Fermat's little theorem: Se p eh primo entao a^(p-1) = 1 mod p
+-> Produto dos fatores:
+    Dado por n^( numerodefatores(n) / 2)
 
-Catalan numbers:
-Ex.: Number of Balanced bracket sequences (n = pairs of brackets)
-C_n = (2n escolhe n) / (n+1)
+-> Goldbach's conjecture:
+    Todo inteiro par n > 2 pode ser representado como n = a + b onde a e b sao primos
+
+-> Twin prime conjecture:
+    Existe infinitos pares da forma {p, p + 2} onde p e p + 2 sao primos
+
+-> Legendre's conjecture:
+    Existe sempre um primo entre n^2 e (n + 1)^2
+
+-> Fermat's little theorem:
+    Se p eh primo e a e p sao coprimos, entao a^(p - 1) mod p = 1
+    a^k mod p = a^(k mod (p - 1)) mod p (maneira de reduzir o expoente)
+
+-> Euler's theorem:
+    a^phi(p) mod p = 1, onde phi(p) eh o totiente de Euler
+
+-> Modular Inverse:
+    Existe quando a e p sao coprimos.
+    (a^-1) = a^(phi(p) - 1)
+
+-> Diophantine Equations:
+    Equacoes de forma aX + bY = c, existem solucao caso c seja divisivel por gcd(a, b)
+    Para acharmos uma solucao usa Extended gcd.
+
+-> Lagrange's Theorem:
+    Todo inteiro positivo pode ser inscrito como a soma de 4 quadrados (n = a^2 + b^2 + c^2 + d^2)
+
+-> Zeckendorf's Theorem:
+    Todo inteiro positivo possui uma representacao unica da soma de numeros de Fibonacci onde
+    nenhum par de numeros sao iguais ou numeros de Fibonacci consecutivos.
+
+-> Euclid's formula:
+    Usada para formar todas as triplas (a,b,c) primitivas pitagoricas. (primitiva = a,b,c sao coprimos)
+    (n^2 - m^2, 2*n*m, n^2 + m^2), onde 0 < m < n e n e m sao coprimos e pelo menos um eh par.
+    Ex.: m = 1 e n = 2, (3,4,5)
+
+-> Wilson's Theorem:
+    n eh primo quando (n-1)! mod n = n - 1
+
+-> Catalan numbers:
+    Ex.: Number of Balanced bracket sequences (n = pairs of brackets)
+    C_n = (2n escolhe n) / (n + 1)
+
+-> Basico
+
+-> Progressao Aritmetica:
+    a_n = a_1 + (n - 1) * r
+    S_n = ((a_1 + a_n) * n) / 2
+
+-> Progressao Geometrica:
+    a_n = a_1 * q^(n - 1)
+    S_n = (a_1 * (q^n - 1)) / (q - 1)
+    S_inf = (a_1) / (1 - q)    // Se -1 < q < 1

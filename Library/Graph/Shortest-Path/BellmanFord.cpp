@@ -34,7 +34,7 @@ bool bellmanFord(int src, int n){
             int u, v, w;
             tie(u,v,w) = edgeList[j];
             if(dist[u] == INF) continue;
-			if(dist[u] + w < dist[v]) dist[v] = NINF; // We can only return false here
+            if(dist[u] + w < dist[v]) dist[v] = NINF; // We can only return false here
         }
     }
 
