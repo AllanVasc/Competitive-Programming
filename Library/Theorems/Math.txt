@@ -49,16 +49,52 @@
     n eh primo quando (n-1)! mod n = n - 1
 
 -> Catalan numbers:
-    Ex.: Number of Balanced bracket sequences (n = pairs of brackets)
     C_n = (2n escolhe n) / (n + 1)
+    ou C_0 = 1, C_n = somatorio de i = 0 -> n-1 de C_i*C_(n-1+1)
+    1. Number of Balanced bracket sequences (n = pairs of brackets)
+    2. There are C_n binary trees of n nodes
+    3. There are C_(n-1) rooted trees of n nodes
 
--> Basico
+-> Burnside's lemma
+    Usado para saber a quantidade de objetos onde apenas um representante seja contado em um grupo simetrico.
+    Somatorio de k = 1,2,...,n de c(k) / n
+    onde n eh a quantidade de maneiras que podemos "rotacionar" o objeto e temos c(k) combinacoes
+    que permanecem inalteradas quando a rotacao k-esima eh aplicada.
+    Ex.: quantidade de colares de n perolas onde cada perola possui m possiveis cores:
+        Somatorio de i = 0,1,...,n-1 de m^(gcd(i, n)) / n
 
--> Progressao Aritmetica:
-    a_n = a_1 + (n - 1) * r
-    S_n = ((a_1 + a_n) * n) / 2
+-> Cayley's formula
+    Existem n^(n - 2) labeled trees que possuem n vertices.
+    Prova vem do Prufer Code.
 
--> Progressao Geometrica:
-    a_n = a_1 * q^(n - 1)
-    S_n = (a_1 * (q^n - 1)) / (q - 1)
-    S_inf = (a_1) / (1 - q)    // Se -1 < q < 1
+-> Matriz:
+
+    -> Counting paths
+        Seja G uma matriz de adjacencia de um grafo sem pesos, onde [u][v] possui a quantidade de arestas de u -> v,
+        a matriz G^n mostra a quantidade de caminhos com n arestas do vertice "u" para o "v".
+
+    -> Shortest paths
+        Seja G uma matriz de adjacencia de um grafo com pesos, onde [u][v] eh o minimo peso de u -> v,
+        a matriz G^n mostra o menor caminho com n arestas do vertice u -> v.
+        Obs.: Modificar a operacao de multiplicacao: Ao inves de somatorio ser minimo e ao inves de produto ser soma.
+        Obs.: no fexpo no primeiro (y & 1) nao fazer a multiplicacao e sim so uma atribuicao sendo answ = matrix por conta da matrix identidade perder o sentido.
+
+    -> Kirchhoff's Theorem
+        Diz a quantidade de spanning trees de um grafo g.
+        Seja a matriz M construida de tal maneira: 
+        M[i][i] = grau do vertice i em g.
+        M[i][j] = -1 se existe aresta em g entre i e j.
+        M[i][j] = 0 se nao existe aresta em g entre i e j.
+        Seja M' a matriz M apos remover qualquer linha e qualquer coluna.
+        A quantidade de Spanning trees de g eh dado por DET(M').
+
+-> Basico:
+
+    -> Progressao Aritmetica:
+        a_n = a_1 + (n - 1) * r
+        S_n = ((a_1 + a_n) * n) / 2
+
+    -> Progressao Geometrica:
+        a_n = a_1 * q^(n - 1)
+        S_n = (a_1 * (q^n - 1)) / (q - 1)
+        S_inf = (a_1) / (1 - q)    // Se -1 < q < 1
