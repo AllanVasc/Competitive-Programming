@@ -1,12 +1,12 @@
--> Numero de fatores:
+-> Numero de fatores/divisores:
     Dado um numero n em sua fatoracao prima n = (p_1^alfa_1) * (p_2^alfa_2) * ...
     O numero de fatores eh dado pelo produtorio i = 1,...,k de (alfa_i + 1)
 
--> Soma dos fatores:
+-> Soma dos fatores/divisores:
     Dado um numero n em sua fatoracao prima n = (p_1^alfa_1) * (p_2^alfa_2) * ...
     A soma dos fatores eh dada pelo produtorio i = 1,...,k de (p_i^(alfa_i + 1) - 1) / (p_i - 1)
 
--> Produto dos fatores:
+-> Produto dos fatores/divisores:
     Dado por n^( numerodefatores(n) / 2)
 
 -> Goldbach's conjecture:
@@ -87,6 +87,35 @@
         M[i][j] = 0 se nao existe aresta em g entre i e j.
         Seja M' a matriz M apos remover qualquer linha e qualquer coluna.
         A quantidade de Spanning trees de g eh dado por DET(M').
+
+-> Probability:
+
+    -> We can either use combinatorics or simulate the process that generates the event.
+    
+    -> Conditional Probability
+        P(A|B) = P(A AND B) / P(B)
+        is the probability of A assuming that B happens.
+        We can calculate the intersection of A and B using this formula.
+    
+    -> Event A is independent if P(A|B) = P(A)
+
+    -> Random Variables
+        We denote P(X = x) the probability that the value of a random variable X is x.
+
+    -> Expected value
+        Indicates the average value of a random variable X.
+        somatorio x de P(X = x) * x
+        Where x goes through all possible values of X.
+        Linearity: E[X1 + X2 + ... + Xn] = E[X1] + E[X2] + ... + E[Xn]
+
+    -> Distributions
+        1. Uniform Distribution: the random variable X has n possible values a, a + 1,...,b and the probability of each value is 1/n.
+            E[X] = (a + b) / 2
+        2. Binominal Distribution: n attempts are made and the probability that a single attempt succeeds is p.
+            P(X = x) = p^x * (1 - p)^(n - x) * Comb(n, x)
+            E[X] = p * n
+        3. Geometric Distribution: the probability that an attempt succeeds is p, and we continue ultil the first success happens.
+            E[X] = 1 / p
 
 -> Basico:
 
