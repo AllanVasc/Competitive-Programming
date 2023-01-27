@@ -127,3 +127,5 @@
         a_n = a_1 * q^(n - 1)
         S_n = (a_1 * (q^n - 1)) / (q - 1)
         S_inf = (a_1) / (1 - q)    // Se -1 < q < 1
+
+    -> Somatorio de i = 1 -> n de i * i = n * (n + 1) * (2*n + 1) / 6

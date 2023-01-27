@@ -8,6 +8,7 @@ const int block = sqrt(MAXN);  // Block size
 
 struct Query{
     int l, r, idx;
+    Query(int l, int r, int idx) : l(l), r(r), idx(idx) {}
     bool operator < (Query &other){
         if(l / block != other.l / block) return (l / block) < (other.l / block);
         return (l / block & 1) ? (r < other.r) : (r > other.r);
