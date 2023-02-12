@@ -32,7 +32,7 @@ public:
     }
  
 private:
-    uint64_t getInt(char c){
+    uint64_t getInt(char c){ // Attention: leave the subtraction if there are only letters
         return c - 'a' + 1;
     }
  

@@ -1,0 +1,7 @@
+-> Lattice Points:
+    Lattice point is a point whose coordinates are integers.
+    The amount of lattice points of a segment a-b will be gcd( abs((b - a).x), abs((b - a).y))
+
+-> Pick's Theorem:
+    The area of a polygon = Number of Lattice points inside + Lattice points on the boundary / 2 - 1.
+    Area = i + b/2 - 1
