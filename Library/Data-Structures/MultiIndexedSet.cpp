@@ -5,6 +5,8 @@
 using namespace std;
 using namespace __gnu_pbds;
 
+// DO NOT USE #DEFINE INT LONG LONG IN CODE!
+// If needed, initialize the multiset as long long normally
 template<typename T>
 class multi_indexed_set{
 
@@ -30,19 +32,19 @@ class multi_indexed_set{
 
 multi_indexed_set<int> ms;
 
-// Função para inserir o elemento "X"
+// Inserts "X" in multiset
 ms.insert(X);
 
-// Função para remoção do elemento "X"
+// Deletes "X" in multiset
 ms.erase(X);
 
-// Retorna a posição do elemento "X", uma outra função é contar a quantidade de elementos estritamente menores que "X"
+// Returns the position of element "X", another function is to count the amount of elements strictly smaller than "X"
 ms.order_of_key(X);
 
-// Retorna a quantidade de elementos iguais a "X"
+// Returns the number of elements equal to "X"
 ms.count(X);
 
-// Retorna a quantidade de elementos no multiset
+// Returns the size of the multiset
 ms.size();
 
 /*
@@ -53,8 +55,8 @@ ms.insert(X)        -> O(logn)
 ms.erase(X)         -> O(logn)
 ms.order_of_key(X); -> O(logn)
 ms.count(X)         -> O(1) (Average)
-ms.size()           -> ??
+ms.size()           -> O(1)
 
-Observação: Ainda é possivel a implementação da função "find_by_order".
+Note: We can implement the "find_by_order" function
 
 */
