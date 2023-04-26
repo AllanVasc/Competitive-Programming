@@ -1,159 +1,95 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-const int N = 5;    // Number of variables
+#define int long long
 
-// Graph inplementation using Adjacency List (1-Based)
-vector<int> adj[2*N+1];
+// 2-SAT solver using Kosaraju's Algorithm
+struct TwoSAT{
+    int n;
+    vector<vector<int>> g, gt;
+    vector<int> component;
+    vector<bool> vis, assignment;
+    stack<int> order;
 
-// Transposed Graph using Adjacency List (1-Based)
-vector<int> adjT[2*N+1];
-
-// Auxiliary Vectors
-vector<int> visited;
-vector<int> order;
-vector<int> comp;
-
-// We set a variable to true or false (if there's an answer)
-vector<bool> assignment;
-
-// Directed Graph (Building the graph and its transposition)
-void addEdge(int u, int v){
-
-    // Variable x is mapped to x
-    // Variable -x is mapped to N+x = N-(-x)
-
-    // For (x v y) we need to add edges (!x -> y) and (!y -> x)
-    if(u > 0 && v > 0){
-
-        adj[u+N].push_back(v); // (!x -> y)
-        adjT[v].push_back(u+N);
-
-        adj[v+N].push_back(u); // (!y -> x)
-        adjT[u].push_back(v+N);
+    TwoSAT(int n) : n(n){
+        g.assign(2 * n + 2, vector<int>());
+        gt.assign(2 * n + 2, vector<int>());
+        component.assign(2 * n + 2, -1);
+        vis.assign(2 * n + 2, false);
     }
 
-    else if(u > 0 && v < 0){
+    // (a or b) = (!a -> b) and (!b -> a)
+    void addOr(int a, int b){ add(-a, b); add(-b, a); }
+    // (a and b) = (a or a) and (b or b)
+    void addAnd(int a, int b){ addOr(a, a); addOr(b, b); }
+    // (a -> b) = (!a or b)
+    void addImp(int a, int b){ addOr(-a, b); }
+    // (a xor b) = (a or b) and (!a or !b)
+    void addXor(int a, int b){ addOr(a, b); addOr(-a, -b); }
+    // (a equal b) = (a <--> b) = (a -> b) and (b -> a)
+    void addEqual(int a, int b){ addImp(a, b); addImp(b, a); }
+    // (a != b) = (a xor b)
+    void addDiff(int a, int b){ addXor(a, b); }
 
-        adj[u+N].push_back(N-v); // (!x -> y)
-        adjT[N-v].push_back(u+N);
-
-        adj[-v].push_back(u);  // (!y -> x)
-        adjT[u].push_back(-v);
-    }
-
-    else if (u < 0 && v > 0){
-        
-        adj[-u].push_back(v); // (!x -> y)
-        adjT[v].push_back(-u);
-
-        adj[v+N].push_back(N-u);  // (!y -> x)
-        adjT[N-u].push_back(v+N);
-    }
-
-    else{
-
-        adj[-u].push_back(N-v); // (!x -> y)
-        adjT[N-v].push_back(-u);
-
-        adj[-v].push_back(N-u);  // (!y -> x)
-        adjT[N-u].push_back(-v);
-    }
-}
-
-// First DFS traversal to build the processing order
-void dfsOrder(int u){
-    visited[u] = true;
-    
-    for(auto v : adj[u]){
-        if(!visited[v])
-            dfsOrder(v);
-    }
-
-    order.push_back(u);
-}
-
-// Second DFS Traversal to build the list of components
-void dfsComponent(int u, int cl){
-    comp[u] = cl;
-
-    for (auto v : adjT[u])
-        if (comp[v] == -1)
-            dfsComponent(v, cl);
-}
-
-// 2SAT solution based on Kosaraju's Algorithm for finding Strongly Connected Components (SCC)
-bool solve2SAT(){
-
-    // Building the processing order 
-    visited.assign(2*N+1,0);
-
-    for(int i = 1; i <= 2*N; i++) // (1-Based)
-        if (!visited[i])
-            dfsOrder(i);
-
-    // We need to reverse the order
-    reverse(order.begin(), order.end());
-
-    comp.assign(2*N+1, -1);
-    for (int i = 0, j = 0; i < 2*N; i++) {
-        int u = order[i];
-        if (comp[u] == -1)
-            dfsComponent(u, j++);
-    }
-
-    // Building our answer
-    assignment.assign(N+1, false);
-    
-    for (int i = 1; i <= N; i++) { // (1-Based)
-        if (comp[i] == comp[i+N])
-            return false;
-        assignment[i] = comp[i] > comp[i+N];
-    }
-    return true;
-}
-
-// Testing the Algorithm
-int main(){
-
-    // (x1 v x2)^(!x2 v x3)^(!x1 v !x2)^(x3 v x4)^(!x3 v x5)^(!x4 v !x5)^(!x3 v x4)
-    int a[] = {1, -2, -1, 3, -3, -4, -3};
-    int b[] = {2, 3, -2, 4, 5, -5, 4};
-
-    for(int i = 0; i < 7; i++){
-        addEdge(a[i],b[i]);
-    }
-
-    if(solve2SAT()){
-        cout << "YES" << '\n';
-        cout << "Possible Answer: ";
-        for(int i = 1; i <= N; i++){
-            cout << assignment[i] << " ";
+    bool solve(){
+        // 0 and 1 are dead nodes
+        for(int i = 2; i < 2 * n + 2; i++){
+            if(!vis[i]) dfs(i);
         }
-        cout << '\n';
-    }
-    else{
-        cout << "NO" << '\n';
+        reverse();
+        int idx = 0;
+        while(!order.empty()){
+            int u = order.top();
+            order.pop();
+            if(component[u] == -1){
+                findComponent(u, idx++);
+            }
+        }
+        assignment.resize(n + 1);   // 1-based
+        for(int i = 1; i <= n; i++){
+            if(component[trad(i)] == component[trad(-i)]) 
+                return false;
+            assignment[i] = component[trad(i)] > component[trad(-i)];
+        }
+        return true;
     }
 
-    return 0;
-}
+private:
+    // + -> xi (even), - -> !xi (odd)
+    int trad(int v){ return v > 0 ? 2 * v : 2 * abs(v) + 1; }
+    void add(int a, int b){ g[trad(a)].push_back(trad(b)); }
+
+    void reverse(){
+        for(int i = 0; i < 2 * n + 2; i++)
+            for(auto v : g[i])
+                gt[v].push_back(i);
+    }
+
+    void dfs(int u){
+        vis[u] = true;
+        for(auto v : g[u]){
+            if(!vis[v]) dfs(v);
+        }
+        order.push(u);
+    }
+
+    void findComponent(int u, int root){
+        component[u] = root;
+        for(auto v : gt[u]){
+            if(component[v] == -1) findComponent(v, root);
+        }
+    }
+};
 
 /*
 
-Time Complexity
+Time Complexity:
 
-solve2SAT   -> O(V+E)
+2SAT    -> O(V + E)
 
 Links:
 
 https://cp-algorithms.com/graph/2SAT.html
-https://www.geeksforgeeks.org/2-satisfiability-2-sat-problem/
-
-Obs.:
-
-1º) A entrada das variaveis precisam estar na Conjunctive Normal Form (CNF) para o algoritmo funcionar
-2º) Lembre-se que: (A v B) = true, é igual a ===> (!A -> B) AND (!B -> A), Com isso transformamos (A V B) em 2 arestas.
+https://www.youtube.com/watch?v=0nNYy3rltgA
 
 */
