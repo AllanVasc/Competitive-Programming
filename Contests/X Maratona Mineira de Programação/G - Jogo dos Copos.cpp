@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    vector<char> v(4, '.');
+    v[2] = 'x';
+    int n;
+    cin >> n;
+    for(int i = 0; i < n; i++){
+        int a, b;
+        cin >> a >> b;
+        swap(v[a], v[b]);
+    }
+
+    for(int i = 0; i < 4; i++){
+        if(v[i] == 'x'){
+            cout << i << '\n';
+            return 0;
+        }
+    }
+   
+}
