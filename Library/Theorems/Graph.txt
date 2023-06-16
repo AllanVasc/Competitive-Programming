@@ -27,3 +27,11 @@ Flow:
 -> Dilworh's Theorem:
     Antichain = conjunto de nos de um grafo onde nao tem caminho de qualquer no para outro dentro do conjunto.
     Em um grafo direcionado aciclico, Minimum General Path Cover = Maximum antichain
+
+Planar Graph:
+
+-> Euler's formula for a connected planar graph:
+    v + f - e = 2
+
+-> Euler's formula for a disconnected planar graph:
+    v - e + f = c + 1
