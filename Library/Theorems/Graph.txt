@@ -35,3 +35,6 @@ Planar Graph:
 
 -> Euler's formula for a disconnected planar graph:
     v - e + f = c + 1
+
+-> Kuratowski's Theorem:
+    A Graph is planar if and only if it contains no subdivision of K5 or K3,3.
