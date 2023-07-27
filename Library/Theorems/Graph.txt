@@ -48,6 +48,6 @@ Euler Path/Circuit:
 
 -> Directed Graph:
     -> Existe quando todas as arestas pertencem ao mesmo componente conexo e quando acontece um dos 2 casos:
-    1. Em todo vertice "u", inDegree[u] == inDegree[v] (Euler Path = Euler Circuit)
-    2. Em um vertice "u", outDegree[u] == inDegree[u] + 1 e em outro vertice "v" inDegree[v] = outDegree[v] + 1 e nos outros
+    1. Em todo vertice "u", inDegree[u] == outDegree[u] (Euler Path = Euler Circuit)
+    2. Em um vertice "u", outDegree[u] == inDegree[u] + 1 e em outro vertice "v" inDegree[v] == outDegree[v] + 1 e nos outros
        "x" inDegree[x] == outDegree[x] (Nao existe Euler Circuit e o "src" eh o "u" com o final do Eulerian Path sendo "v")
