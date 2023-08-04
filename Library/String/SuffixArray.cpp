@@ -4,17 +4,26 @@ using namespace std;
 #define int long long
 #define pii pair<int,int>
 
-class SuffixArray{
+struct SuffixArray{
 public:
+    int n, realSz;
     string text;
-    vector<int> sa;
-    vector<int> rank;
-    vector<int> lcp;
+    vector<int> sa, rank, lcp;
+    vector<int> patStart, ps;
+    char separator = 'A' - 1; // If you need, apply Suffix Array to integers
 
-    void process(string & s){
-        text = s;
-        text += '$';
-        int n = text.size();
+    SuffixArray(string & s) : text(s), realSz(s.size()) {}
+
+    void add_pattern(string & s){
+        n = text.size();
+        text += separator + s;
+        patStart.push_back(n + 1);
+        separator--;
+    }
+
+    void build(){
+        text += '$'; // Needs to be lexicographically smaller than all separators
+        n = text.size();
         sa.resize(n);
         rank.resize(n);
 
@@ -56,19 +65,32 @@ public:
             k += k;
         }
 
-        // lcp O(n)
-        // lcp[i] = lcp(sa[i], sa[i - 1])
+        ps.assign(n, 0); // Prefix Sum of the suffixes that are part of the original text
+        for(int i = 0; i < n; i++){
+            ps[i] = sa[i] < realSz;
+            if(i) ps[i] += ps[i - 1];
+        }
+
+        build_lcp();
+    }
+
+    // Kasai lcp O(n)
+    // lcp[i] = lcp(sa[i], sa[i + 1]) 
+    void build_lcp(){
         lcp.assign(n, 0);
         int h = 0;
         for(int i = 0; i < n; i++) rank[sa[i]] = i;
         for(int i = 0; i < n; i++){
-            if(rank[i]){
-                k = sa[rank[i] - 1];
-                while(text[i + h] == text[k + h]) h++;
-                lcp[rank[i]] = h;
-                if(h) h--;
+            if(rank[i] == n - 1){
+                h = 0;
+                continue;
             }
+            int nxt = sa[rank[i] + 1];
+            while(text[i + h] == text[nxt + h]) h++;
+            lcp[rank[i]] = h;
+            if(h) h--;
         }
+        // build_RMQ(lcp)
     }
 
     bool find(string & pat){
@@ -118,7 +140,7 @@ public:
 
 Time Complexity:
 
-process -> O(nlogn)
+build   -> O(nlogn)
 find    -> O(|pat|logn)
 
 Links:
