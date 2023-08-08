@@ -86,7 +86,7 @@ public:
                 continue;
             }
             int nxt = sa[rank[i] + 1];
-            while(text[i + h] == text[nxt + h]) h++;
+            while(i + h < n && nxt + h < n && text[i + h] == text[nxt + h]) h++; // && text[i + h] != separator, if needed
             lcp[rank[i]] = h;
             if(h) h--;
         }
