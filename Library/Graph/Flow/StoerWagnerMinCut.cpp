@@ -2,7 +2,6 @@
 using namespace std;
 
 #define int long long
-using ll = long long;
 
 // Graph implementation using matrix
 vector<vector<int>> g;

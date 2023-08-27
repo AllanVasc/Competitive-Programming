@@ -52,7 +52,7 @@ void find_bridges(int n){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 find_bridges    -> O(V + E)
 

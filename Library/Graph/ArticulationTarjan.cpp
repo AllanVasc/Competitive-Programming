@@ -42,7 +42,7 @@ void find_cutpoints(int n){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 find_cutpoints  -> O(V + E)
 

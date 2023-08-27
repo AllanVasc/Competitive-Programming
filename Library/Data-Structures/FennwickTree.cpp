@@ -2,7 +2,6 @@
 using namespace std;
 
 #define int long long
-using ll = long long;
 
 // Implementation of a Binary Indexed Tree (Fennwick Tree) (1-Based) (Sum Operation)
 vector<int> bit;
@@ -45,7 +44,7 @@ void update(int idx, int add) {
 
 /*
 
-Time Complexity
+Time Complexity:
 
 build           -> O(n)
 prefix_query    -> O(logn)

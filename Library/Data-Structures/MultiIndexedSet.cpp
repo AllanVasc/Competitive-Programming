@@ -5,11 +5,10 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-// DO NOT USE #DEFINE INT LONG LONG IN CODE!
-// If needed, initialize the multiset as long long normally
+#define int long long // This line needs to be after imports
+
 template<typename T>
 class multi_indexed_set{
-
     tree<pair<T, int>, null_type, less<pair<T, int>>, rb_tree_tag,
 	    tree_order_statistics_node_update> miset;
     unordered_map<T, int> freq;
@@ -29,7 +28,6 @@ class multi_indexed_set{
 	int size(){ return miset.size(); }
 
 };
-
 multi_indexed_set<int> ms;
 
 // Inserts "X" in multiset
@@ -49,7 +47,7 @@ ms.size();
 
 /*
 
-Time Complexity
+Time Complexity:
 
 ms.insert(X)        -> O(logn)
 ms.erase(X)         -> O(logn)

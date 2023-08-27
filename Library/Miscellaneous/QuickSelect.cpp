@@ -2,7 +2,6 @@
 using namespace std;
 
 #define int long long
-using ll = long long;
 
 vector<int> v;
 
@@ -42,7 +41,7 @@ vector<int> smallest_k_elements(int k){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 QuickSelect -> O(n) In the average case, in the worst case it runs on O(n^2) but it is rare.
 

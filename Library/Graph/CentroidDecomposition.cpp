@@ -3,11 +3,11 @@ using namespace std;
   
 #define int long long
 
-const int MAXN = 1e5;
+const int ms = 1e5;
 
-vector<int> g[MAXN];
-int dist[MAXN][30]; // Distance from the nodes to the centroid (represented by the level)
-int parent[MAXN], sz[MAXN], removed[MAXN], height[MAXN];
+vector<int> g[ms];
+int dist[ms][30]; // Distance from the nodes to the centroid (represented by the level)
+int parent[ms], sz[ms], removed[ms], height[ms];
 
 // Preprocessing subtree sizes
 void dfsSubtree(int u, int p){
@@ -57,7 +57,7 @@ void decompose(int u, int p = -1, int lvl = 0){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 decompose   -> O(nlogn)
 

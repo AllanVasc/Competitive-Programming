@@ -1,8 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
-#define int long long
-
 template<class T>
 struct CoordinateCompression{
     vector<T> v;
@@ -14,7 +9,7 @@ struct CoordinateCompression{
     }
     int operator[] (const T & a){
         auto it = lower_bound(v.begin(), v.end(), a);
-        return int(it - v.begin());
+        return (int) it - v.begin();
     }
 };
 

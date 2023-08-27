@@ -19,7 +19,7 @@ vector<bool> sieve(int n){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 sieve   ->  O(n*log(log(n)))
 

@@ -55,7 +55,7 @@ void print(int curr, string &answ){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 insert  -> O(n)
 remove  -> O(n)

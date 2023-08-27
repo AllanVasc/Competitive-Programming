@@ -1,49 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Recursive Binary Search function
-int binarySearch(int arr[], int l, int r, int x){
-
-    if (r >= l) {
-        int mid = l + (r - l) / 2;
-
-        // Found my answer
-        if (arr[mid] == x)
-            return mid;
- 
-        // Element is smaller, just need to look in left subarray
-        if (arr[mid] > x)
-            return binarySearch(arr, l, mid - 1, x);
-
-        // Element is greater, just need to look in left subarray
-        return binarySearch(arr, mid + 1, r, x);
-    }
-
-    // Can't find element "x"
-    return -1;
-}
-
-// Iterative Binary Search function
-int binarySearch(int arr[], int l, int r, int x){
-
+int binarySearch(vector<int> & v, int l, int r, int x){
     while (l <= r) {
         int m = l + (r - l) / 2;
- 
-        // Found my answer
-        if (arr[m] == x)
-            return m;
- 
-        // If x greater, ignore left half
-        if (arr[m] < x)
-            l = m + 1;
- 
-        // If x is smaller, ignore right half
-        else
-            r = m - 1;
+        if (v[m] == x) return m;
+        if (v[m] < x) l = m + 1;
+        else r = m - 1;
     }
- 
-    // Can't find element "x"
-    return -1;
+    return -1; // Can't find element "x"
 }
 
 // Finding the smallest solution
@@ -67,7 +32,7 @@ int k = x+1;
 
 /*
 
-Time Complexity
+Time Complexity:
 
 Binary Search                   -> O(logn)
 Finding the smallest solution   -> O(x*logz) x is the time complexity of function check();

@@ -84,7 +84,7 @@ struct Euler{
 
 /*
 
-Time Complexity
+Time Complexity:
 
 getPath     -> O(V + E)
 getCycle    -> O(V + E)

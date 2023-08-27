@@ -1,71 +1,55 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-const int N = 10; // Number of vertices
+#define int long long
+#define pii pair<int,int>
+const int INF = 0x3f3f3f3f3f3f3f3f;
 
-// Graph inplementation using Adjacency List ( adj[u] -> (v,w) ) (0-Based)
-vector<pair<int,ll>> adj[N];
-
-// Vector used to keep the shortest distances (0-Based)
-vector<ll> dist;
+vector<vector<pii>> g; // Graph (0-based) g[u] -> (v, w)
+vector<int> dist; // Shortest distances (0-Based)
 
 // Undirected Weighted Graph
-void addEdge(int u, int v,ll w){
-    adj[u].emplace_back(v,w); 
-    adj[v].emplace_back(u,w); 
+void addEdge(int u, int v, int w){
+    g[u].emplace_back(v, w); 
+    g[v].emplace_back(u, w); 
 }
 
 // Shortest Path Faster Algorithm (SPFA) (Single source shortest path with negative weight edges)
 // SPFA is a improvement of the Bellman-Ford algorithm.
 bool spfa(int src){
+    int n = g.size();
+    dist.assign(n, INF);
 
-    // Initialize distances from src to all other vertices as INFINITE
-    dist.assign(N, LONG_LONG_MAX);
-
-    // Counts the number of times the distance has changed 
-    // (if it is greater than N-1 there is a negative cycle)
-    vector<int> count(N, 0);
-
-    // If a vertex is already in the queue, there is no need to put it back
-    vector<bool> inqueue(N, false);
+    // count[i] = # of times the distance of "i" has changed 
+    // if it is greater than N-1 there's a negative cycle
+    vector<int> count(n, 0);
+    vector<bool> inqueue(n, false);
     queue<int> q;
-
     dist[src] = 0;
     q.push(src);
     inqueue[src] = true;
-
-    // Takes advantage of the fact that not all attempts at relaxation will work.
-    while (!q.empty()) {
+    while(!q.empty()){
         int u = q.front();
         q.pop();
         inqueue[u] = false;
-
-        for (auto i : adj[u]) {
-
-            int v = i.first;
-            ll w = i.second;
-
-            if (dist[u] + w < dist[v]) {
+        for(auto [v, w] : g[u]){
+            if(dist[u] + w < dist[v]){
                 dist[v] = dist[u] + w;
-                if (!inqueue[v]) {
+                if(!inqueue[v]){
                     q.push(v);
                     inqueue[v] = true;
                     count[v]++;
-                    if (count[v] > N)
-                        return false;  // negative cycle
+                    if(count[v] > n) return false; // negative cycle
                 }
             }
         }
     }
-
-    // There isn't negative cycle and our answer is in dist
-    return true;
+    return true; // There isn't negative cycle
 }
 
 /*
 
-Time Complexity
+Time Complexity:
 
 SPFA -> O(V*E) (In the worst case, on average it is O(E), so it's efficient)
 

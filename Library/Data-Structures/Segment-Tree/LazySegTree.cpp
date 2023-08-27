@@ -2,52 +2,45 @@
 using namespace std;
 
 #define int long long
-
-// Array used to construct Segtree (Need to be 1-Based)
 vector<int> v;
 
-// Implementation of a Recursive Segment Tree with Lazy Propagation (1-Based) (Sum Operation)
+// Implementation of a Recursive Segment Tree with Lazy Propagation (Sum Operation)
 // RANGE UPDATE [l,r], RANGE QUERY [l,r]
 class segTree{
-    vector<int> seg;
-    vector<int> lazy;
+    vector<int> seg, lazy;
 
 public:
-    // n = number of elements or v.size() - 1
-    segTree(int n){
+    segTree(int n){ // n = v.size()
         seg.assign(4*n, 0);
         lazy.assign(4*n, 0);
-        build(1, 1, n);
+        build(1, 0, n - 1);
     }
-    // Call using update(1, 1, n, ql, qr, val) (ql and qr need to be 1-Based)
-    void update(int p, int l, int r, int ql, int qr, int val){
+
+    // Call using update(1, 0, n - 1, ql, qr, x)
+    void update(int p, int l, int r, int ql, int qr, int x){
         propagate(p, l, r);
         if(r < ql || l > qr) return;
         if(ql <= l && r <= qr){
-            lazy[p] = val;
+            lazy[p] = x;
             propagate(p,l,r);
         }
         else{
             int m = (l + r)/2;
             int lc = 2*p;
             int rc = lc + 1;
-
-            update(lc, l, m, ql, qr, val);
-            update(rc, m + 1, r, ql, qr, val);
-
+            update(lc, l, m, ql, qr, x);
+            update(rc, m + 1, r, ql, qr, x);
             seg[p] = seg[lc] + seg[rc];
         }
     }
-    // Call using query(1, 1, n, ql, qr) (ql and qr need to be 1-Based)
+    // Call using query(1, 0, n - 1, ql, qr)
     int query(int p, int l, int r, int ql, int qr){
         propagate(p, l, r);
         if(r < ql || l > qr) return 0;
         if(ql <= l && r <= qr) return seg[p];
-
         int m = (l+r)/2;
         int lc = 2*p;
         int rc = lc + 1;
-
         return query(lc, l, m, ql, qr) + query(rc , m + 1, r, ql, qr);
     }
 
@@ -61,7 +54,6 @@ private:
             int m = (l+r)/2;
             int lc = 2*p;
             int rc = lc + 1;
-
             build(lc, l, m);
             build(rc, m + 1, r);
             seg[p] = seg[lc] + seg[rc];
@@ -69,7 +61,6 @@ private:
     }
     void propagate(int p, int l, int r){
         if(lazy[p] == 0) return;
-
         seg[p] += (r - l + 1) * lazy[p];
         if(l != r){
             lazy[2*p] += lazy[p];
@@ -81,7 +72,7 @@ private:
 
 /*
 
-Time Complexity
+Time Complexity:
 
 build       -> O(n)
 update      -> O(logn)

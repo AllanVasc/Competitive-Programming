@@ -46,7 +46,7 @@ private:
 
 /*
 
-Time Complexity
+Time Complexity:
 
 KMP -> O(n + m)
 

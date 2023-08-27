@@ -2,7 +2,6 @@
 using namespace std;
 
 #define int long long
-using ll = long long;
 
 // Implementation of a Fennwick Tree 2D (1-Based) (Sum Operation)
 vector<vector<int>> bit;
@@ -49,7 +48,7 @@ void update(int i, int x, int add){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 build       -> O(n^2)
 query       -> O((logn)^2)

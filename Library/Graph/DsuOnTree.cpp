@@ -54,7 +54,7 @@ void DsuOnTree(int u, int p, bool keep){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 DsuOnTree   -> O(nlogn)
 

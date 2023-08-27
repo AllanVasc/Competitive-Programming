@@ -71,7 +71,6 @@ CVector fft(CVector a, bool inv = false) {
     return a;
 }
 
-// NTT
 void fft2in1(CVector &a, CVector &b) {
     int n = (int) a.size();
     for(int i = 0; i < n; i++) {
@@ -84,7 +83,6 @@ void fft2in1(CVector &a, CVector &b) {
     }
 }
 
-// NTT
 void ifft2in1(CVector &a, CVector &b) {
     int n = (int) a.size();
     for(int i = 0; i < n; i++) a[i] = a[i] + b[i] * Complex(0, 1);
@@ -95,7 +93,6 @@ void ifft2in1(CVector &a, CVector &b) {
     }
 }
 
-// NTT
 vector<long long> mod_mul(const vector<long long> &a, const vector<long long> &b, long long cut = 1 << 15) {
     int n = (int) a.size();
     CVector C[4];
@@ -148,13 +145,13 @@ vector<int> mul(const vector<int> &a, const vector<int> &b) {
     for(int i = 0; i < n; i++) {
         c[i] = (int) (poly[i].imag / 2 + 0.5);
     }
-    while (c.size() > 0 && c.back() == 0) c.pop_back();
+    while (c.size() > 0 && c.back() == 0) c.pop_back(); // Attention here
     return c;
 }
 
 /*
 
-Time Complexity
+Time Complexity:
 
 fft  -> O(N*logN)
 

@@ -34,7 +34,7 @@ int ternarySearch(int l, int r){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 ternarySearch	-> O(log3(N))
 

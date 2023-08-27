@@ -33,9 +33,7 @@ struct Matrix{
 
 /*
 
-Using this struct with the following algorithms:
-
-Time Complexity
+Time Complexity:
 
 fastModExp  -> O(d^3*logy)  d is the dimension of the square matrix
 

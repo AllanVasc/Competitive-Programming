@@ -1,117 +1,71 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-const int N = 11; // Number of vertices
-
-// Graph inplementation using Adjacency List (0-Based)
-vector<int> adj[N];
-
-// Array to set visited Nodes
-bool visited[N];
+#define int long long
+vector<vector<int>> g;  // Graph (0-based)
+vector<int> visited;
 
 // Undirected Graph
 void addEdge(int u, int v){
-    adj[u].push_back(v); 
-    adj[v].push_back(u); 
+    g[u].push_back(v); 
+    g[v].push_back(u); 
 }
 
-// BFS
-void bfsUtil(int v){
-
+void bfsUtil(int src){
     queue<int> q;
-
-    q.push(v);
-    visited[v] = true;
-
+    q.push(src);
+    visited[src] = true;
     while(!q.empty()){
-
         int u = q.front();
         q.pop();
-
-        for(auto i: adj[u]){
-
-            if(visited[i] == false){
-                q.push(i);
-                visited[i] = true;
-            }
-
+        for(auto v: g[u]){
+            if(visited[v]) continue;
+            visited[v] = true;
+            q.push(v);
         }
     }
 }
 
-// Traverse all the Graph (Disconnected Graph) (If you know that is a connected Graph, just use "bfsUtil(root)")
+// Traverse all the Graph (Disconnected Graph)
 void bfs(){
-
-    // Set all unvisited
-    for(int i = 0; i < N; i++){ 
-        visited[i] = false;
-    } 
-
-    // Visit all unvisited vertices
-    for(int i = 0; i < N; i++){
-        if(visited[i] == false){
-            bfsUtil(i);
-        }
+    int n = g.size();
+    visited.assign(n, false);
+    for(int i = 0; i < n; i++){
+        if(visited[i]) continue;
+        bfsUtil(i);
     }
-
 }
 
 // This function return true with a graph is bipartite
 bool isBipartite(){
-
-    // Store color of the vertex (-1 = unvisited, 0 = black, 1 = whites)
-    vector<int> color(N, -1);
- 
-    // queue for BFS storing {vertex , colour}
-    queue<pair<int, int> > q;
+    int n = g.size();
+    // -1 = unvisited, 0 = black, 1 = white
+    vector<int> color(n, -1);
+    queue<pair<int, int>> q;
    
-    //loop incase graph is not connected
-    for (int i = 0; i < N; i++) {
-       
-        //if not coloured (not visited)
-        if (color[i] == -1) {
-           
-            // Assign any color
-            q.push({ i, 0 });
-            color[i] = 0;
-
-            //BFS
-            while (!q.empty()) {
-
-                pair<int, int> p = q.front();
-                q.pop();
-               
-                //current vertex
-                int v = p.first;
-                //colour of current vertex
-                int c = p.second;
-                 
-                //traversing vertexes connected to current vertex
-                for (int j : adj[v]) {
-                   
-                    // Can't be bipartite
-                    if (color[j] == c)
-                        return false;
-                   
-                    //if uncooloured (unvisited)
-                    if (color[j] == -1) {
-                        //colouring with opposite color to that of parent
-                        color[j] = 1-c;
-                        q.push({ j, color[j] });
-                    }
+    // loop incase graph is not connected
+    for(int i = 0; i < n; i++){
+        if(color[i] != -1) continue; // Already visited
+        q.push({i, 0}); // {vertex, color}
+        color[i] = 0;
+        while(!q.empty()){
+            auto[u, c] = q.front();
+            q.pop();
+            for(auto v : g[u]){
+                if(color[v] == c) return false;
+                if(color[v] == -1){
+                    color[v] = 1 - c;
+                    q.push({v, color[v]});
                 }
             }
         }
     }
-
-    // Graph is Bipartite
     return true;
 }
 
 /*
 
-Time Complexity
+Time Complexity:
 
 addEdge     -> O(1)
 bfs         -> O(V+E)

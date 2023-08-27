@@ -8,8 +8,7 @@ class RabinKarp{
     const uint64_t MOD = (1LL << 61) - 1;
     const int base = 31;
     int n;
-    vector<uint64_t> h;
-    vector<uint64_t> p;
+    vector<uint64_t> h, p;
  
 public:
     RabinKarp(string &s){ // Initializing
@@ -48,7 +47,7 @@ private:
 
 /*
 
-Time Complexity
+Time Complexity:
 
 RabinKarp   -> O(N)
 getKey      -> O(1)

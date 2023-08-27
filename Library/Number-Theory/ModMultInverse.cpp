@@ -2,16 +2,13 @@
 using namespace std;
 
 #define int long long
-using ll = long long;
 
 // If we know MOD is prime, then we can use Fermats’s little theorem to find the inverse. 
-int ModMultInv(int n){
-    return fastModExp(n,MOD-2,MOD)%MOD;
-}
+int ModMultInv(int n){ return fastModExp(n, MOD-2, MOD); }
 
 /*
 
-Time Complexity
+Time Complexity:
 
 ModMultInv -> O(logMOD)
 

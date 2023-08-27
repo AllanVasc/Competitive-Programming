@@ -1,50 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-const int N = 10; // Number of vertex
+#define int long long
 
-// Disjoint Set Union implementation using array (0-Based)
-int parent[N];
+const int ms = 1e6;
+int par[ms], sz[ms];
 
-// Array to Union by Size (0-Based)
-int size[N];
-
-// Function used to initialize Disjoint Set
-void Build(){
-    for(int i = 0; i < N; i++){
-        parent[i] = i;
-        size[i] = 1;
+void build(){
+    for(int i = 0; i < ms; i++){
+        par[i] = i;
+        sz[i] = 1;
     }
 }
 
-// Returns the representative of the set that contains the element "v" (Path Compression Optimization)
-int Find(int v) {
-    if (v == parent[v])
-        return v;
-    return parent[v] = Find(parent[v]);
-}
+// Path Compression Optimization
+int find(int u){ return u == par[u] ? u : par[u] = find(par[u]); }
 
-// Joins two different sets (Union by Size Optimization)
-void Union(int a, int b) {
-    a = Find(a);
-    b = Find(b);
-    if (a != b) {
-        // We put the smallest set in the largest
-        if (size[a] < size[b])
-            swap(a, b);
-        parent[b] = a;
-        size[a] += size[b];
-    }
+// Union by Size Optimization
+void merge(int a, int b){
+    a = find(a), b = find(b);
+    if(a == b) return;
+    if(sz[a] < sz[b]) swap(a, b);
+    par[b] = a;
+    sz[a] += sz[b];
 }
 
 /*
 
-Time Complexity
+Time Complexity:
 
-Build   -> O(N)
-Find    -> O(logN) ( In the worst case, the average case is O(1) )
-Union   -> O(logN) ( In the worst case, the average case is O(1) )
+build   -> O(N)
+find    -> O(logN) ( Average case is O(1) )
+merge   -> O(logN) ( Average case is O(1) )
 
 Links:
 

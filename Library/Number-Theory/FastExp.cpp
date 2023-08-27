@@ -6,18 +6,18 @@ using namespace std;
 // Fast Modular Exponentiation
 int fastModExp(int x, int y, int m){
     int ans = 1;
-    x = x % m;      // Update 'x' if it is more than or equal to 'm'
-    while(y){ // We walk through the bits of power "y"
-        if(y & 1) ans = (ans*x) % m; // If the least significant bit is set, we multiply the answer by "x"
-        y = y >> 1; // We walk to the next bit
-        x = (x*x) % m;
+    x = x % m;
+    while(y){
+        if(y & 1) ans = ans * x % m;
+        x = x * x % m;
+        y = y >> 1;
     }
     return ans;
 }
 
 /*
 
-Time Complexity
+Time Complexity:
 
 fastModExp  -> O(logy)
 

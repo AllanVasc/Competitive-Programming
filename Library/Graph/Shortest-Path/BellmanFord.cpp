@@ -19,8 +19,7 @@ bool bellmanFord(int src, int n){
     // negative cycles, we can use a flag to stop when there isn't update
     for(int i = 0; i < n - 1; i++){
         for(int j = 0; j < edgeList.size(); j++){
-            int u, v, w;
-            tie(u,v,w) = edgeList[j];
+            auto [u, v, w] = edgeList[j];
             if(dist[u] == INF) continue;
             dist[v] = min(dist[v], dist[u] + w);
             dist[v] = max(dist[v], NINF);
@@ -31,8 +30,7 @@ bool bellmanFord(int src, int n){
     // We perform n - 1 steps to check if the cycle affects a specific node.
     for(int i = 0; i < n - 1; i++){
         for(int j = 0; j < edgeList.size(); j++){
-            int u, v, w;
-            tie(u,v,w) = edgeList[j];
+            auto [u, v, w] = edgeList[j];
             if(dist[u] == INF) continue;
             if(dist[u] + w < dist[v]) dist[v] = NINF; // We can only return false here
         }
@@ -45,7 +43,7 @@ bool bellmanFord(int src, int n){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 bellmanFord -> O(V*E)
 

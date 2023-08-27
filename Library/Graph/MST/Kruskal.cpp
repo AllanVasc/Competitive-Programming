@@ -1,71 +1,48 @@
-// Kruskal's algorithm uses Disjoint Set, it's necessary to include to use the functions "Find" and "Union"
-// See in "/Data-Structures/DisjointSetUnion.cpp"
-
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-const int N = 10; // Number of vertex
+#define int long long
 
-// Structure to symbolize a weighted edge
-struct Edge {
-    int u, v, w;
-    bool operator<(Edge const& other) {
-        return w < other.w;
-    }
+struct Edge{
+    int u, v, w, id;
+    Edge() {}
+    Edge(int u, int v, int w = 0, int id = 0) : u(u), v(v), w(w), id(id) {}
+    bool operator < (Edge & other) const { return w < other.w; }
 };
+vector<Edge> edges, mst;
 
-// Graph inplementation using Edge List (u,v,w) (0-Based)
-vector<Edge> edges;
-
-// Vector responsible for keeping the edges used to build the MST
-vector<Edge> mst;
-
-// Kruskal's Algorithm for Minimum Spanning Tree using Disjoint Set (Returns the cost to build the MST)
-ll kruskal(){
-
-    ll cost = 0;
-
-    // We can stop the algorithm when we have N-1 edges
-    int cntEdges = 0;
-
-    // Will sort edges by weight
-    sort(edges.begin(), edges.end());
-
-    for (Edge e : edges) {
-        if (Find(e.u) != Find(e.v)) {
-            cost += e.w;
+// Kruskal's Algorithm for Minimum Spanning Tree using DSU (Returns the cost to build the MST)
+int kruskal(int n){
+    int answ = 0;
+    int cntEdges = 0; // We can stop when we have n-1 edges
+    sort(edges.begin(), edges.end()); // sort by weight
+    initDSU(n);
+    for(Edge e : edges){
+        if(Find(e.u) != Find(e.v)){
+            answ += e.w;
             mst.push_back(e);
             Union(e.u, e.v);
             cntEdges++;
-            if(cntEdges == N-1)
-                break;
+            if(cntEdges == n - 1) break;
         }
     }
-
-    return cost;
+    return answ;
 }
 
 /*
 
-Time Complexity
+Time Complexity:
 
 kruskal -> O(E*logN)
-
-Disjoint Set Union Functions
-
-Build   -> O(N)
-Find    -> O(logN) ( In the worst case, the average case is O(1) )
-Union   -> O(logN) ( In the worst case, the average case is O(1) )
 
 Links:
 
 https://cp-algorithms.com/graph/mst_kruskal.html
 https://cp-algorithms.com/graph/mst_kruskal_with_dsu.html
 
-Obs.: 
+Obs.:
 
 1º) Para criar uma Maximum Spanning Tree podemos simplesmente dar um "reverse(edges.begin(), edges.end());"
-ou caminhar pelo for no sentido contrário "for(int i = N-1; i >= 0; i--)"
+ou caminhar pelo for no sentido contrario "for(int i = N-1; i >= 0; i--)"
 
 */

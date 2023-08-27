@@ -62,7 +62,7 @@ private:
 
 /*
 
-Time Complexity
+Time Complexity:
 
 CRT ->  O(nlog(LCM(n1,n2,...,nn)))
 

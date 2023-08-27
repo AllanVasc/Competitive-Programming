@@ -4,19 +4,16 @@ using namespace std;
 #define int long long
 
 // Implementation of Z-function algorithm
-class ZFunction{
-private:
-    int n;
+struct ZFunction{
     vector<int> z;
-    int patternSize = -1;
+    int n, patSz = -1;
 
-public:
     ZFunction(string str, string pattern = ""){ // Initializing
         if(!pattern.empty()){
             str = pattern + "$" + str;
-            this->patternSize = pattern.size();
+            patSz = pattern.size();
         }
-        this->n = str.size();
+        n = str.size();
         z.assign(n, 0);
 
         int l = 0, r = 0;
@@ -35,7 +32,7 @@ public:
     vector<int> findPattern(){
         vector<int> answ;
         for(int i = 0; i < n; i++){
-            if(z[i] == patternSize) answ.push_back(i - patternSize - 1);
+            if(z[i] == patSz) answ.push_back(i - patSz - 1);
         }
         return answ;
     }
@@ -43,7 +40,7 @@ public:
 
 /*
 
-Time Complexity
+Time Complexity:
 
 Z-function -> O(N)
 

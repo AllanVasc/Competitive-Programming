@@ -1,77 +1,46 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-const int N = 1e5+10; // Number of vertex
+#define int long long
+#define pii pair<int,int>
+const int INF = 0x3f3f3f3f3f3f3f3f;
 
-// Graph inplementation using Adjacency List ( adj[u] -> (v,w) ) (0-Based)
-vector<pair<int,ll>> adj[N];
+vector<vector<pii>> g; // Graph (0-based) g[u] -> (v, w)
 
 // Undirected Weighted Graph
-void addEdge(int u, int v,ll w){
-    adj[u].emplace_back(v,w); 
-    adj[v].emplace_back(u,w); 
+void addEdge(int u, int v, int w){
+    g[u].emplace_back(v, w); 
+    g[v].emplace_back(u, w); 
 }
 
 // Prim's Algorithm for Minimum Spanning Tree (Returns the cost to build the MST)
-ll prim(){
-
-    //Min Heap
-    priority_queue< pair<ll,int> , vector <pair<ll,int>> , greater<pair<ll,int>> > pq;
-
-    // Taking vertex 0 as source
-    int src = 0;
-
-    // Cost to build the MST
-    ll wMST = 0;
-
-    // Create a vector for costs and initialize all costs as infinite and source as 0
-    vector<ll> costs(N, LONG_LONG_MAX);
+int prim(int src){
+    int n = g.size();
+    priority_queue<pii, vector<pii>, greater<pii>> pq;
+    vector<int> costs(n, INF);
     costs[src] = 0;
- 
-    // To store parent array which in turn store MST
-    vector<int> parent(N, -1);
- 
-    // To keep track of vertices included in MST
-    vector<bool> inMST(N, false);
- 
-    // Insert source in priority queue (w,u)
-    pq.emplace(0, src);
-
-    while (!pq.empty()){
-
-        // Extracting the minimum costs vertex
-        int u = pq.top().second;
-        ll wt = pq.top().first;
+    vector<int> parent(n, -1); // Store MST
+    vector<bool> inMST(n, false);
+    pq.emplace(0, src); // {w, u}
+    int answ = 0;
+    while(!pq.empty()){
+        auto [wt, u] = pq.top();
         pq.pop();
-
-        // If the vertex has already been added there is no need to continue
         if(inMST[u] == true) continue;
-
-        // Include vertex in MST (Took the shortest path possible to get to it)
         inMST[u] = true;
-        wMST += wt;
-
-        // Get all adjacent vertices of "u"
-        for(auto i : adj[u]){
-            int v = i.first;
-            ll w = i.second;
-            
-            // "v" isn't in MST and weight of (u,v) is smaller than current costs of "v"
+        answ += wt;
+        for(auto [v, w] : g[u]){
             if(inMST[v] == false && costs[v] > w){
-                // Updating weight to "v" (Is a possible edge that i can put in the MST)
                 costs[v] = w;
-                pq.emplace(w,v);
+                pq.emplace(w, v);
                 parent[v] = u;
             }
         }
     }
-    
     /*
     // Print edges of MST using parent array (We start from 1 because the parent of the source is -1)
     for (int i = 1; i < N; ++i)
         printf("%d - %d\n", parent[i], i);
-    */ 
-   
-    return wMST;
+    */
+    return answ;
 }

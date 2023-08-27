@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
+#define int long long
 
-const int MAXN = 10000;  	// Number of vertices
-const int LOG = 20;     	// Log2(N)
+const int ms = 10000;	// Number of vertices
+const int LOG = 20;		// Log2(N)
 
-vector<vector<int>> g;	// Graph inplementation using Adjacency List (0-Based)
-int up[MAXN][LOG];  	// up[v][j] is 2^j-th ancestor of v
-int depth[MAXN];
+vector<vector<int>> g;	// Graph (0-Based)
+int up[ms][LOG];	// up[v][j] is 2^j-th ancestor of v
+int depth[ms];
 
 // Preprocessing
 void dfs(int a, int p) {
@@ -47,7 +47,7 @@ int lca(int a, int b) {
 
 /*
 
-Time Complexity
+Time Complexity:
 
 dfs     -> O(N*logN)
 lca     -> O(logN) 

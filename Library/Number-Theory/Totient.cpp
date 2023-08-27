@@ -32,7 +32,7 @@ vector<int> sievePhi(int n){
 
 /*
 
-Time Complexity
+Time Complexity:
 
 phi ->  O(sqrt(n))
 sievePhi    -> O(n*log(log(n)))
