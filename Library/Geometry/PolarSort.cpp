@@ -10,9 +10,9 @@ int quadrant(PT p){
     return 3;   // p.x < 0 && p.y >= 0
 }
 
-struct cmp{
+struct polar_sort{
     PT pivot;
-    cmp (PT p): pivot(p) {}
+    polar_sort (PT p): pivot(p) {}
     bool operator ()(PT a, PT b) const {
         a = a - pivot;
         b = b - pivot;
@@ -22,7 +22,7 @@ struct cmp{
 };
 
 // Call using
-// sort(v.begin(), v.end(), cmp(pivot));
+// sort(v.begin(), v.end(), polar_sort(pivot));
 
 /*
 
