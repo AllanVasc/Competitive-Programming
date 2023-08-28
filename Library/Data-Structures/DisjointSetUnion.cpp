@@ -30,8 +30,8 @@ void merge(int a, int b){
 Time Complexity:
 
 build   -> O(N)
-find    -> O(logN) ( Average case is O(1) )
-merge   -> O(logN) ( Average case is O(1) )
+find    -> O(logN) (Average case is O(1))
+merge   -> O(logN) (Average case is O(1))
 
 Links:
 

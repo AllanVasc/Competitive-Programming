@@ -14,17 +14,14 @@ vector<Edge> edges, mst;
 // Kruskal's Algorithm for Minimum Spanning Tree using DSU (Returns the cost to build the MST)
 int kruskal(int n){
     int answ = 0;
-    int cntEdges = 0; // We can stop when we have n-1 edges
     sort(edges.begin(), edges.end()); // sort by weight
     initDSU(n);
     for(Edge e : edges){
-        if(Find(e.u) != Find(e.v)){
-            answ += e.w;
-            mst.push_back(e);
-            Union(e.u, e.v);
-            cntEdges++;
-            if(cntEdges == n - 1) break;
-        }
+        if(find(e.u) == find(e.v)) continue;
+        answ += e.w;
+        mst.push_back(e);
+        merge(e.u, e.v);
+        if(mst.size() == n - 1) break;
     }
     return answ;
 }
@@ -39,10 +36,5 @@ Links:
 
 https://cp-algorithms.com/graph/mst_kruskal.html
 https://cp-algorithms.com/graph/mst_kruskal_with_dsu.html
-
-Obs.:
-
-1º) Para criar uma Maximum Spanning Tree podemos simplesmente dar um "reverse(edges.begin(), edges.end());"
-ou caminhar pelo for no sentido contrario "for(int i = N-1; i >= 0; i--)"
 
 */

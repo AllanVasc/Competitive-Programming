@@ -5,8 +5,7 @@ using namespace std;
 const int INF = 0x3f3f3f3f3f3f3f3f;
 const int ms = 500;
 
-int g[ms][ms];
-int dist[ms][ms];
+int g[ms][ms], dist[ms][ms];
 
 // Undirected Weighted Graph
 void addEdge(int u, int v, int w){
