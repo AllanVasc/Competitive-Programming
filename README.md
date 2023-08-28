@@ -1,4 +1,4 @@
-My - ICPC Library
+Don't get Dijkstracted - ICPC Library
 =================
 
 Algorithms and data structures library for competitive programming, mainly ICPC.

@@ -3,7 +3,7 @@
 
 import subprocess
 code_dir = "Library"
-title = "Codigo para mim tem que ser por metro - ICPC Library"
+title = "Don't get Dijkstracted - ICPC Library"
 
 def get_sections():
     sections = []

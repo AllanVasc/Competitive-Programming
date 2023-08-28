@@ -5,52 +5,91 @@
 # tab character:	
 
 [Data Structures]
-Data-Structures/DisjointSetUnion.cpp	DSU (Disjoint Set Union)
+Data-Structures/Segment-Tree/SegTree.cpp	Segment Tree
+Data-Structures/Segment-Tree/LazySegTree.cpp	SegTree with Lazy Propagation
+Data-Structures/Segment-Tree/SparseSegTree.cpp	Sparse SegTree
+Data-Structures/Segment-Tree/LazySparseSegTree.cpp	Sparse SegTree with Lazy Propagation
+Data-Structures/Segment-Tree/PersistentSegTree.cpp	Persistent SegTree
+Data-Structures/Segment-Tree/SegTreeBeats.cpp	SegTree Beats
 Data-Structures/FennwickTree.cpp	BIT (Fennwick Tree)
 Data-Structures/FennwickTree2D.cpp	BIT 2D (Fennwick Tree)
-Data-Structures/SegmentTree.cpp	Segment Tree
-Data-Structures/LazySegTree.cpp	SegTree with Lazy Propagation
+Data-Structures/SparseTable.cpp	Sparse Table
+Data-Structures/Treap.cpp	Treap
+Data-Structures/DisjointSetUnion.cpp	DSU (Disjoint Set Union)
+Data-Structures/DsuRollback.cpp	DSU with Rollback
+Data-Structures/MinQueue.cpp	Min Queue
+Data-Structures/Mo.cpp	Mo
+Data-Structures/MoHilbert.cpp	Mo (Hilbert)
 Data-Structures/PolicyBased.cpp	Policy Based Struct
 Data-Structures/MultiIndexedSet.cpp	Multi Indexed Set
 
 [Graph Algorithms]
-Graph/Traversal/DFS.cpp	DFS
-Graph/Traversal/BFS.cpp	BFS
-Graph/TopologicalSort.cpp	Topologial Sort
+Graph/Flow/MaxFlowDinic.cpp	Dinic - Max Flow
+Graph/Flow/MinCostFlow.cpp	Min Cost Max Flow
+Graph/Flow/MCMFDijkstra.cpp	Min Cost Max Flow (Dijkstra)
+Graph/Flow/StoerWagnerMinCut.cpp	Stoer Wagner (Min Cut)
+Graph/Hungarian.cpp	Hungarian (Assignment)
+Graph/ArticulationTarjan.cpp	Articulation Points (Tarjan)
+Graph/ArticulationDFSTree.cpp	Articulation Points (DFS Tree)
+Graph/BlockCutTree.cpp	Block-Cut Tree
+Graph/BridgeTarjan.cpp	Bridges (Tarjan)
+Graph/BridgeDFSTree.cpp	Bridges (DFS Tree)
+Graph/2CC.cpp	2-Edge-Connected Component
+Graph/SCC.cpp	Kosaraju (Strongly Connected Component)
+Graph/2SAT.cpp	2 SAT
+Graph/EulerPath.cpp	Euler Path
+Graph/ETT.cpp	Euler Tour technique
+Graph/HLDVertex.cpp	HLD (Vertex)
+Graph/HLDEdge.cpp	HLD (Edge)
+Graph/DsuOnTree.cpp	DSU On Tree
+Graph/CentroidDecomposition.cpp	Centroid Decomposition
+Graph/LCABinaryLifting.cpp	LCA (Binary Lifting)
+Graph/LCAETT.cpp	LCA (Segment Tree)
+Graph/TreeHash.cpp	Tree Hashing
+Graph/MST/Kruskal.cpp	Kruskal
+Graph/MST/Prim.cpp	Prim
+Graph/MST/Boruvka.cpp	Boruvka
 Graph/Shortest-Path/Dijkstra.cpp	Dijkstra
 Graph/Shortest-Path/FloydWarshall.cpp	Floyd-Warshall
 Graph/Shortest-Path/BellmanFord.cpp	Bellman-Ford
 Graph/Shortest-Path/SPFA.cpp	SPFA
-Graph/MST/Kruskal.cpp	Kruskal
-Graph/MST/Prim.cpp	Prim
-Graph/Flow/MaxFlowDinic.cpp	Dinic - Max Flow
-Graph/Flow/MinCostFlow.cpp	Min Cost Max Flow
-Graph/Flow/StoerWagnerMinCut.cpp	Stoer Wagner Min Cut
-Graph/LCABinaryLifting.cpp	LCA (Binary Lifting)
-Graph/LCA.cpp	LCA (Segment Tree)
-Graph/Kosaraju.cpp	Kosaraju (Strongly Connected Components)
-Graph/2SAT.cpp	2 SAT
+Graph/Traversal/DFS.cpp	DFS
+Graph/Traversal/BFS.cpp	BFS
+Graph/TopologicalSort.cpp	Topologial Sort
 
 [Dynamic Programming]
 DP/LCS.cpp	LCS
 DP/LIS.cpp	LIS
+DP/SOS.cpp	SOS
 
 [Number Theory]
+Number-Theory/Sieve.cpp	Sieve of Eratosthenes
+Number-Theory/Totient.cpp	Totient (phi)
+Number-Theory/FFT.cpp	Fast Fourier transform
+Number-Theory/Gauss.cpp	Gauss
+Number-Theory/XorGauss.cpp	Xor Gauss
+Number-Theory/ExtendedGCD.cpp	Extended GCD
+Number-Theory/CRT.cpp	Chinese Remainder Theorem
+Number-Theory/DiscreteLog.cpp	Discrete Log
 Number-Theory/FastExp.cpp	Fast Exponentiation
 Number-Theory/ModMultInverse.cpp	Multiplicative Inverse
 Number-Theory/ShortMiller&Rho.cpp	Miller Rabin - Pollard Rho
 Number-Theory/Miller&Rho.cpp	Miller - Rho Iterative
-Number-Theory/FFT.cpp	Fast Fourier transform
 Number-Theory/BestMiller&Rho.cpp	Pollard Rho with Montgomery
 
 [Geometry]
 Geometry/Geometry.cpp	Geometry
+Geometry/PolarSort.cpp	Polar Sort
 Geometry/ConvexHull.cpp	Convex Hull
-Geometry/PolygonArea.cpp	Polygon Area
 
 [String Algorithms]
 String/RabinKarp.cpp	Rabin Karp Hash
 String/ZFunction.cpp	Z Algorithm
+String/KMP.cpp	KMP
+String/Trie.cpp	Trie
+String/AhoCorasick.cpp	Aho Corasick
+String/SuffixArrayShort.cpp	Suffix Array O(nlogn)
+String/SuffixArray.cpp	Suffix Array (alternative)
 
 [Search Algorithms]
 Search/BinarySearch.cpp	Binary Search
@@ -58,10 +97,19 @@ Search/TernarySearch.cpp	Ternary Search
 
 [Miscellaneous]
 Miscellaneous/Kadane.cpp	Kadane
+Miscellaneous/SubmaskEnumeration.cpp	Submask Enumeration
+Miscellaneous/CountDivisors.cpp	Count Divisors
 Miscellaneous/NextGreatElement.cpp	Next Great Element
 Miscellaneous/PreviousGreatElement.cpp	Previous Great Element
 Miscellaneous/QuickSelect.cpp	Quick Select
 Miscellaneous/SpiralTraversal.cpp	Spiral Traversal
+Miscellaneous/UnorderedMapTricks.cpp	Unordered Map Tricks
 
 [Util]
 Util/Matrix.cpp	Structure for matrix
+Util/CoordinateCompression.cpp	Coordinate Compression
+
+[Theorems]
+Theorems/Graph.txt	Graph
+Theorems/Math.txt	Math
+Theorems/Geometry.txt	Geometry
