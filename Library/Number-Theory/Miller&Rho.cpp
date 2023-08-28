@@ -28,7 +28,7 @@ ull fexp(ull x, ull y, ull m){
     return answ;
 }
 
-// Validation by Fermat’s Small Theorem
+// Validation by Fermat's little Theorem
 // a^(p-1) - 1 = 0 mod p
 // (a^((p-1)/2) - 1)*(a^((p-1)/2) + 1) = 0 mod p
 bool miller(ull p, ull a){

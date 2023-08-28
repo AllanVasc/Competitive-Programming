@@ -54,9 +54,8 @@ https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
 
 Obs.: 
 
-1º) Erros de precisao sao acumulados muito rapido utilizando pontos flutuantes, precisamos corrigir
-utilizando EPS (Ver o primeiro site)
-2º) Podemos guardar os predecessores utilizando uma matriz.
-3º) O grafo pode ter pesos negativos, mas não ciclos negativos
+1) Com float, erros de precisao sao comuns, precisamos corrigir utilizando EPS (Ver o primeiro site).
+2) Podemos guardar os predecessores utilizando uma matriz.
+3) O grafo pode ter pesos negativos, mas nao ciclos negativos
 
 */

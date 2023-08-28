@@ -8,7 +8,7 @@ using namespace std;
 Code for compressing graph into 2-Edge-Connected Component 
 and finding Bridges online.
 2CC it's a CC that remains connected whenever you remove fewer than 2 edges.
-(Can’t have Bridges inside)
+(Can't have Bridges inside)
 */
 
 // 0 -> Connected Component

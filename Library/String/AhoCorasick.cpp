@@ -40,7 +40,7 @@ public:
             }
             node = trie[node][s[i]];
         }
-        trie[node].id = patterns++; // If it can repeat strings, it must be a list of id’s
+        trie[node].id = patterns++; // If it can repeat strings, it must be a list of IDs
     }
 
     int next(int node, U label){

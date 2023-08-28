@@ -3,7 +3,7 @@ using namespace std;
 
 #define int long long
 
-// Kadane’s Algorithm (Works in array's that have only negative numbers)
+// Kadane's Algorithm (Works in array's that have only negative numbers)
 int kadane(int n, vector<int> &v){
     int answ = 0;   // If possible be an empty subarray
     int curr = 0;
@@ -20,7 +20,7 @@ int maxCircularSumMethod1(int n, vector<int> &v){
     // Ours answer don't have the corners (Just need to use Kadane)
     int max_kadane = kadane(n, v);
 
-    // if maximum sum using standard kadane' is less than 0
+    // if maximum sum using standard kadane is less than 0
     if(max_kadane < 0)
       return max_kadane;
  
@@ -83,7 +83,7 @@ int maxCircularSumMethod2(int n, vector<int> &v){
 
 Time Complexity
 
-Kadane’s Algorithm -> O(n)
+Kadane's Algorithm -> O(n)
 
 Links:
 

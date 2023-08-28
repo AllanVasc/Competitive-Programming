@@ -9,7 +9,7 @@ void addEdge(int u, int v){
     g[u].push_back(v); 
 }
 
-// Kahn’s algorithm for Topological Sorting (Directed Acyclic Graphs)
+// Kahn's algorithm for Topological Sorting (Directed Acyclic Graphs)
 vector<int> topologicalSort(){
     int n = g.size();
 
@@ -47,7 +47,7 @@ vector<int> topologicalSort(){
 
 Time Complexity:
 
-topologicalSort -> O(V+E)
+topologicalSort -> O(V + E)
 
 Links:
 

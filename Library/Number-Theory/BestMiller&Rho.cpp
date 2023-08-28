@@ -2,7 +2,7 @@
 using namespace std;
 
 // Algorithm for factoring numbers up to 10^29
-// I don’t know how it works yet
+// I don't know how it works yet
 
 typedef unsigned long long u64;
 typedef __int128_t i128;

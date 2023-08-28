@@ -149,9 +149,9 @@ private:
 
 Time Complexity
 
-Dinic                               -> O(V²E)
-Dinic Maximum Matching              -> O(E*sqrt(V))
-Dinic in Unit Capacities Networks   -> O(E*V^(2/3))
+Dinic                               -> O(V^2 * E)
+Dinic Maximum Matching              -> O(E * sqrt(V))
+Dinic in Unit Capacities Networks   -> O(E * V^(2/3))
 
 Links:
 

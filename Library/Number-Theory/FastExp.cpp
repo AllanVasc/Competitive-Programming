@@ -28,7 +28,7 @@ https://www.youtube.com/watch?v=-3Lt-EwR_Hw
 https://www.geeksforgeeks.org/modular-exponentiation-power-in-modular-arithmetic/
 
 Obs.: 
-We can reduce the exponent using Fermat’s Little Theorem.
+We can reduce the exponent using Fermat's Little Theorem.
 Example: a^(b^c), we can say that (b^c) = x*(m - 1) + y, then a^(b^c) = a^y. Being y = (b^c) % (m - 1)
 
 */

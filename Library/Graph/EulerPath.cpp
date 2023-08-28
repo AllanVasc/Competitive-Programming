@@ -6,7 +6,7 @@ using namespace std;
 
 /*
 
-Hierholzer’s Algorithm to find Euler path/circuit in a graph
+Hierholzer's Algorithm to find Euler path/circuit in a graph
 To use directed graph: Euler<true> euler;
 
 getPath(src): Try to find a Euler Path/circuit starting in "src"

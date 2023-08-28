@@ -50,7 +50,7 @@ int stoer_wagner(int n){
 
 Time Complexity
 
-stoer_wagner    -> O(V^3) can be optimized to O(|V|*|E| + |V|²*log|V|)
+stoer_wagner    -> O(V^3) can be optimized to O(|V|*|E| + |V|^2 * log|V|)
 
 Links:
 
